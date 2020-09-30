@@ -9,12 +9,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createHistory as history } from 'history';
 
 // internal modules
-import App from './components/app';
+import CarsIndex from './containers/cars_index';
+import carsReducer from './reducers/cars_reducer';
+import garageReducer from './reducers/garage_reducer';
 
 import '../assets/stylesheets/application.scss';
 
 const reducers = combineReducers({
-  // key: reducer
+  cars: carsReducer,
 });
 
 const middlewares = applyMiddleware(reduxPromise, logger);
@@ -24,7 +26,7 @@ ReactDOM.render(
   <Provider store={createStore(reducers, {}, middlewares)}>
     <Router history={history}>
       <Switch>
-        <App />
+        <Route path="/" exact component={CarsIndex} />
       </Switch>
     </Router>
   </Provider>,
