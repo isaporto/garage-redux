@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 // external modules
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -7,16 +8,18 @@ import reduxPromise from 'redux-promise';
 import logger from 'redux-logger';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createHistory as history } from 'history';
+import { reducer as formReducer } from 'redux-form';
 
 // internal modules
 import CarsIndex from './containers/cars_index';
+import CarsShow from './containers/cars_show';
+import CarsNew from './containers/cars_new';
 import carsReducer from './reducers/cars_reducer';
-import garageReducer from './reducers/garage_reducer';
-
 import '../assets/stylesheets/application.scss';
 
 const reducers = combineReducers({
   cars: carsReducer,
+  form: formReducer,
 });
 
 const middlewares = applyMiddleware(reduxPromise, logger);
@@ -27,6 +30,8 @@ ReactDOM.render(
     <Router history={history}>
       <Switch>
         <Route path="/" exact component={CarsIndex} />
+        <Route path="/cars/new" component={CarsNew} />
+        <Route path="/cars/:id" component={CarsShow} />
       </Switch>
     </Router>
   </Provider>,
