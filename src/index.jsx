@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import reduxPromise from 'redux-promise';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createHistory as history } from 'history';
 import { reducer as formReducer } from 'redux-form';
@@ -22,7 +22,7 @@ const reducers = combineReducers({
   form: formReducer,
 });
 
-const middlewares = applyMiddleware(reduxPromise, logger);
+const middlewares = applyMiddleware(reduxPromise);
 
 // render an instance of the component in the DOM
 ReactDOM.render(
